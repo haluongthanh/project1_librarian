@@ -66,38 +66,33 @@ void login()
     {
         Console.Write("Enter Mail: ");
         string Mail = Console.ReadLine() ?? "";
-        if (IsValidEmail(Mail))
-        {
-            Console.Write("Enter Passwork: ");
-            string password = Console.ReadLine() ?? "";
-            if (checklogin(Mail, password))
-            {
-                MenuReaders(Mail);
-                isFirst = 1;
-            }
-            else if (checkloginEmployyee(Mail, password))
-            {
-                if (checkPosition(Mail, password))
-                {
-                    MenuAdmin(Mail);
-                    isFirst = 1;
-                }
-                else
-                {
-                    MenuEmployee(Mail);
-                    isFirst = 1;
-                }
 
+        Console.Write("Enter Passwork: ");
+        string password = Console.ReadLine() ?? "";
+        if (checklogin(Mail, password))
+        {
+            MenuReaders(Mail);
+            isFirst = 1;
+        }
+        else if (checkloginEmployyee(Mail, password))
+        {
+            if (checkPosition(Mail, password))
+            {
+                MenuAdmin(Mail);
+                isFirst = 1;
             }
             else
             {
-                Console.WriteLine(" Invalid Mail or password");
+                MenuEmployee(Mail);
+                isFirst = 1;
             }
+
         }
         else
         {
-            Console.WriteLine("Mail sai dinh dang");
+            Console.WriteLine(" Invalid Mail or password");
         }
+
     } while (isFirst != 1);
 }
 void MenuAdmin(string Mail)
@@ -810,13 +805,6 @@ void loanSlipMenu(string Mail)
     } while (selectedChoice != 0);
 }
 
-bool IsValidEmail(string email)
-{
-    string motif = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
-
-    if (email != null) return Regex.IsMatch(email, motif);
-    else return false;
-}
 
 bool checklogin(string Mail, string password)
 {
