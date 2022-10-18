@@ -19,6 +19,7 @@ namespace code.BL
         {
             try
             {
+                Console.Clear();
 
                 Employee employee = new Employee();
 
@@ -144,6 +145,8 @@ namespace code.BL
         {
             try
             {
+                Console.Clear();
+
                 Employee employee = new Employee();
 
                 int isFirst = 0;
@@ -299,6 +302,8 @@ namespace code.BL
         {
             try
             {
+                Console.Clear();
+
                 Employee employee = new Employee();
 
                 int isFirst = 0;
@@ -474,6 +479,7 @@ namespace code.BL
                             } while (isFirst != 1);
                             break;
                         default:
+                            MenuUpdate();
                             break;
                     }
                 } while (choice != 0);
@@ -495,6 +501,8 @@ namespace code.BL
         }
         public void DeleteEmployee()
         {
+            Console.Clear();
+
             Employee employee = new Employee();
 
             int isFirst = 0;
@@ -508,6 +516,7 @@ namespace code.BL
                 {
                     employee.Id = Id;
                     isFirst = 1;
+
                     status = 0;
                     employee.status = status;
                 }
@@ -522,6 +531,8 @@ namespace code.BL
         }
         public void Restore()
         {
+            Console.Clear();
+
             Employee employee = new Employee();
 
             int isFirst = 0;
@@ -552,6 +563,8 @@ namespace code.BL
         }
         public void ChangePassword(string Mail)
         {
+            Console.Clear();
+
             Employee employee = new Employee();
 
             int isFirst = 0;
@@ -598,6 +611,8 @@ namespace code.BL
         }
         public void decentralization()
         {
+            Console.Clear();
+
             Employee employee = new Employee();
 
             int isFirst = 0;
@@ -643,8 +658,9 @@ namespace code.BL
         }
         public void DisplayEmployee(int i)
         {
+            Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("Librarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();
@@ -665,8 +681,9 @@ namespace code.BL
         }
         public void Sreach(string Search, string name)
         {
+            Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("LiBrarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();

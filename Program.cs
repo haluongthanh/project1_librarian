@@ -27,7 +27,7 @@ void begin()
     do
     {
         string[] _menu = { "Exit", "Login", "Register", };
-        string _name = "Librarian";
+        string _name = "Library Management System ";
 
         ShowMenu(_menu, _name);
 
@@ -60,6 +60,7 @@ void begin()
 void login()
 {
     Console.Clear();
+
     int isFirst = 0;
     do
     {
@@ -107,7 +108,7 @@ void MenuAdmin(string Mail)
     {
         string[] _menu = { "Exit", "Book Manager", "Readers Manager", "Employee Mannager", "Decentralization", "Change Password" };
 
-        string _name = "Librarian";
+        string _name = "Library Management System ";
 
         ShowMenu(_menu, _name);
 
@@ -153,7 +154,7 @@ void MenuEmployee(string Mail)
     do
     {
         string[] _menu = { "Exit", "loan slip manager", "loan slip details manager", "Change Password" };
-        string _name = "Librarian";
+        string _name = "Library Management System ";
 
         ShowMenu(_menu, _name);
 
@@ -193,10 +194,10 @@ void MenuReaders(string Mail)
     do
     {
         string[] _menu = { "Exit", "Display Book", "Search", "Change Password" };
-        string _name = "Librarian";
+        string _name = "Library Management System ";
 
         string[] _menus = { "Exit", "Search by isbn", "Search by name", "Search by author" };
-        string _names = "Search";
+        string _names = "Library Management System ";
 
         int i;
 
@@ -233,7 +234,7 @@ void MenuReaders(string Mail)
 
                         if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 3)
                         {
-                            Console.WriteLine("Bạn cần nhập giá trị từ 1 -> 3.");
+
                         }
                         else
                         {
@@ -280,9 +281,9 @@ void BookMenu()
     do
     {
         string[] _menu = { "Exit", "Display Book", "Display Book Delete", "Add Book", "Update", "Delete", "Search", "restore" };
-        string _name = "Librarian";
+        string _name = "Library Management System ";
         string[] _menus = { "Exit", "Search by isbn", "Search by name", "Search by author" };
-        string _names = "Search";
+        string _names = "Library Management System ";
 
         int i;
 
@@ -315,6 +316,7 @@ void BookMenu()
                     selectedChoice = 0;
                     do
                     {
+                        Console.Clear();
                         Console.WriteLine("1.Update all");
                         Console.WriteLine("2.update each part");
                         Console.Write("Your choice: ");
@@ -406,9 +408,9 @@ void loanSlipDetailsMenu()
     do
     {
         string[] _menu = { "Exit", "Display loan slip details", "Display loan slip details Delete", "Add loan slip details", "Update", "Delete", "Search", "Restore", "Update Status" };
-        string _name = "Librarian";
+        string _name = "Library Management System ";
         string[] _menus = { "Exit", "Search by isbn", "Search by name", "Search by author" };
-        string _names = "Search" ?? "";
+        string _names = "Library Management System " ?? "";
 
         ShowMenu(_menu, _name);
 
@@ -468,9 +470,9 @@ void EmployeeMenu()
     do
     {
         string[] _menu = { "Exit", "Display Employee", "Display Employee Delete", "Add Employee", "Update", "Delete", "Search", "Restore" };
-        string _name = "Librarian";
+        string _name = "Library Management System ";
         string[] _menus = { "Exit", "Search by id", "Search by name" };
-        string _names = "Search";
+        string _names = "Library Management System ";
 
         ShowMenu(_menu, _name);
 
@@ -502,6 +504,7 @@ void EmployeeMenu()
                     selectedChoice = 0;
                     do
                     {
+                        Console.Clear();
                         Console.WriteLine("1.Update all");
                         Console.WriteLine("2.update each part");
                         Console.Write("Your choice: ");
@@ -532,6 +535,7 @@ void EmployeeMenu()
                     employeeService.DeleteEmployee();
                     break;
                 case 6:
+                    Console.Clear();
                     selectedChoice = 0;
                     do
                     {
@@ -591,9 +595,9 @@ void ReadersMenu()
     do
     {
         string[] _menu = { "Exit", "Display Readers", "Display Readers Removed", "Add Readers", "Update", "Delete", "Search", "Restore" };
-        string _name = "Librarian";
+        string _name = "Library Management System ";
         string[] _menus = { "Exit", "Search by id", "Search by name" };
-        string _names = "Search";
+        string _names = "Library Management System ";
 
         ShowMenu(_menu, _name);
 
@@ -623,6 +627,7 @@ void ReadersMenu()
                     readersService.AddReaders();
                     break;
                 case 4:
+                    Console.Clear();
                     selectedChoice = 0;
                     do
                     {
@@ -656,6 +661,7 @@ void ReadersMenu()
                     readersService.DeleteReaders();
                     break;
                 case 6:
+                    Console.Clear();
                     selectedChoice = 0;
                     do
                     {
@@ -719,9 +725,9 @@ void loanSlipMenu(string Mail)
     {
 
         string[] _menu = { "Exit", "Display loan Slip", "Display Loan Slip Delete", "Create Loan Slip", "Update", "Delete", "Search", "Restore", "Update Status" };
-        string _name = "Librarian";
+        string _name = "Library Management System ";
         string[] _menus = { "Exit", "Search by id" };
-        string _names = "Search" ?? "";
+        string _names = "Library Management System " ?? "";
 
         ShowMenu(_menu, _name);
 
@@ -754,6 +760,7 @@ void loanSlipMenu(string Mail)
                     selectedChoice = 0;
                     do
                     {
+                        Console.Clear();
                         Console.WriteLine("1.Update all");
                         Console.WriteLine("2.update each part");
                         Console.Write("Your choice: ");

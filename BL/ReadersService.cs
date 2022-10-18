@@ -482,6 +482,7 @@ namespace code.BL
                             } while (isFirst != 1);
                             break;
                         default:
+                            MenuUpdate();
                             break;
                     }
                 } while (choice != 0);
@@ -504,12 +505,12 @@ namespace code.BL
         {
             Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("Librarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM Readers Where Status={i}";
+            var query = $"SELECT * FROM Readers Where Status='{i}'";
 
             Console.WriteLine(string.Format("| {0,5} | {1,15} | {2,13} | {3,15} | {4,27} | {5,10} | {6,10} |", "ID", "Readers Name", "Address", "Phone", "Email", "Password", "Status"));
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
@@ -526,7 +527,7 @@ namespace code.BL
         {
             Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("Librarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();
@@ -560,6 +561,7 @@ namespace code.BL
                 {
                     readers.Id = Id;
                     isFirst = 1;
+
                     status = 0;
                     readers.status = status;
                 }
@@ -588,6 +590,7 @@ namespace code.BL
                 {
                     readers.Id = Id;
                     isFirst = 1;
+
                     status = 1;
                     readers.status = status;
                 }

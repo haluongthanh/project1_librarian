@@ -17,6 +17,7 @@ namespace code.BL
         }
         public void AddLoanSlipDetailsDL()
         {
+            Console.Clear();
             try
             {
                 LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
@@ -77,6 +78,7 @@ namespace code.BL
         }
         public void UpdateLoanSlipDetailsDL()
         {
+            Console.Clear();
             try
             {
                 LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
@@ -153,6 +155,7 @@ namespace code.BL
         }
         public void DeleteLoanSlipDetalis()
         {
+            Console.Clear();
             LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
 
             int isFirst = 0;
@@ -183,6 +186,7 @@ namespace code.BL
         }
         public void status()
         {
+            Console.Clear();
             LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
 
             int isFirst = 0;
@@ -217,6 +221,7 @@ namespace code.BL
         }
         public void Restore()
         {
+            Console.Clear();
             LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
 
 
@@ -243,8 +248,9 @@ namespace code.BL
         }
         public void DisplayLoanSlipDetails(int i)
         {
+            Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("librarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();
@@ -265,8 +271,9 @@ namespace code.BL
         }
         public void SearchLoanSlipDetails(string name)
         {
+            Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("librarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();

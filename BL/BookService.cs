@@ -19,7 +19,7 @@ namespace code.BL
         {
             try
             {
-                Console.WriteLine("AddBook");
+                Console.Clear();
 
                 Book book = new Book();
 
@@ -103,7 +103,7 @@ namespace code.BL
         {
             try
             {
-                Console.WriteLine("UpdateBook");
+                Console.Clear();
 
                 Book book = new Book();
 
@@ -176,6 +176,8 @@ namespace code.BL
         {
             try
             {
+                Console.Clear();
+
                 Book book = new Book();
 
                 int isFirst = 0;
@@ -192,9 +194,10 @@ namespace code.BL
                     int status = 1;
                     if (CheckIsbn(Isbn, status))
                     {
+                        name1 = "ISBN";
                         book.Isbn = Isbn;
                         isFirst = 1;
-
+                        Sreach(name1, Isbn);
                     }
                     else
                     {
@@ -263,6 +266,7 @@ namespace code.BL
                             updatedata(name1, i, Isbn);
                             break;
                         default:
+                            MenuUpdate();
                             break;
                     }
                 } while (choice != 0);
@@ -283,6 +287,8 @@ namespace code.BL
         }
         public void DeleteBook()
         {
+            Console.Clear();
+
             Book book = new Book();
 
             int isFirst = 0;
@@ -311,6 +317,8 @@ namespace code.BL
         }
         public void Restore()
         {
+            Console.Clear();
+
             Book book = new Book();
 
             int isFirst = 0;
@@ -340,8 +348,9 @@ namespace code.BL
         }
         public void DisplayBook(int i)
         {
+            Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("Librarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();
@@ -361,8 +370,9 @@ namespace code.BL
         }
         public void Sreach(string Search, string name)
         {
+            Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("Librarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();

@@ -65,7 +65,7 @@ namespace code.DL
         {
             DBHelper.OpenConnection();
 
-            MySqlCommand cmd = new MySqlCommand("sp_DeleteEmployees", DBHelper.OpenConnection());
+            MySqlCommand cmd = new MySqlCommand("sp_DeleteReaders", DBHelper.OpenConnection());
 
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
 

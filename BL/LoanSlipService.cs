@@ -19,6 +19,7 @@ namespace code.BL
         {
             try
             {
+                Console.Clear();
                 LoanSlip loanSlip = new LoanSlip();
 
                 string name;
@@ -118,6 +119,7 @@ namespace code.BL
         {
             try
             {
+                Console.Clear();
                 LoanSlip loanSlip = new LoanSlip();
 
                 string name;
@@ -234,6 +236,7 @@ namespace code.BL
         {
             try
             {
+                Console.Clear();
                 LoanSlip loanSlip = new LoanSlip();
 
                 string name;
@@ -283,6 +286,7 @@ namespace code.BL
         {
             try
             {
+                Console.Clear();
                 LoanSlip loanSlip = new LoanSlip();
 
                 int isFirst = 0;
@@ -407,6 +411,7 @@ namespace code.BL
                             } while (isFirst != 1);
                             break;
                         default:
+                            MenuUpdate();
                             break;
                     }
                 } while (choice != 0);
@@ -428,6 +433,7 @@ namespace code.BL
         }
         public void DeleteLoanSlip()
         {
+            Console.Clear();
             LoanSlip loanSlip = new LoanSlip();
             string name;
 
@@ -435,7 +441,7 @@ namespace code.BL
 
             do
             {
-                Console.Write("Id update: ");
+                Console.Write("Id Delte: ");
 
                 name = "Loan_slip";
                 int Id = int.Parse(Console.ReadLine() ?? "");
@@ -446,7 +452,7 @@ namespace code.BL
                     loanSlip.id = Id;
                     isFirst = 1;
 
-                    status = 1;
+                    status = 0;
                     loanSlip.status = status;
                 }
 
@@ -456,6 +462,7 @@ namespace code.BL
         }
         public void Restore()
         {
+            Console.Clear();
             LoanSlip loanSlip = new LoanSlip();
             string name;
 
@@ -484,8 +491,9 @@ namespace code.BL
         }
         public void DisplayLoanSlip(int i)
         {
+            Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("Librarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();
@@ -505,8 +513,9 @@ namespace code.BL
         }
         public void Sreach(string name)
         {
+            Console.Clear();
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("Librarian");
+            Console.WriteLine("Library Management System ");
             Console.WriteLine("==========================================================================");
 
             DBHelper.OpenConnection();
