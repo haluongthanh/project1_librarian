@@ -23,6 +23,10 @@ namespace code.BL
 
                 Readers readers = new Readers();
 
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Crete");
+                Console.WriteLine("══════════════════════════════════════");
+
                 int isFirst = 0;
 
                 do
@@ -130,7 +134,30 @@ namespace code.BL
                 int status = 1;
                 readers.status = status;
 
-                _DL.AddReaders(readers);
+                isFirst = 0;
+                do
+                {
+
+                    Console.Write("Do you want to create (Y/N): ");
+                    string l = Console.ReadLine() ?? "";
+                    if (l == "y" || l == "Y")
+                    {
+                        Console.WriteLine("You have successfully create");
+                        _DL.AddReaders(readers);
+                        isFirst = 1;
+                    }
+                    else if (l == "n" || l == "N")
+                    {
+                        Console.WriteLine("You do not agree to create");
+                        isFirst = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You entered wrong");
+                    }
+
+                } while (isFirst != 1);
+
             }
             catch (System.Exception)
             {
@@ -145,6 +172,10 @@ namespace code.BL
                 Console.Clear();
 
                 Readers readers = new Readers();
+
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Update");
+                Console.WriteLine("══════════════════════════════════════");
 
                 int isFirst = 0;
 
@@ -290,8 +321,30 @@ namespace code.BL
                     }
                 } while (isFirst != 1);
 
+                isFirst = 0;
+                do
+                {
 
-                _DL.UpdateReaders(readers);
+                    Console.Write("Do you want to Update (Y/N): ");
+                    string l = Console.ReadLine() ?? "";
+                    if (l == "y" || l == "Y")
+                    {
+                        Console.WriteLine("You have successfully update");
+                        _DL.UpdateReaders(readers);
+                        isFirst = 1;
+                    }
+                    else if (l == "n" || l == "N")
+                    {
+                        Console.WriteLine("You do not agree to update");
+                        isFirst = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You entered wrong");
+                    }
+
+                } while (isFirst != 1);
+
             }
             catch (System.Exception)
             {
@@ -315,9 +368,12 @@ namespace code.BL
 
                 do
                 {
+                    int status = 1;
+                    DisplayReaders(status);
+
                     Console.Write("Id update: ");
                     id = int.Parse(Console.ReadLine() ?? "");
-                    int status = 1;
+
 
                     if (CheckId(id, status))
                     {
@@ -548,14 +604,23 @@ namespace code.BL
         public void DeleteReaders()
         {
             Console.Clear();
+
             Readers readers = new Readers();
+
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Delete");
+            Console.WriteLine("══════════════════════════════════════");
+
             int isFirst = 0;
             do
             {
+                int status = 1;
+                DisplayReaders(status);
+
                 Console.Write("ID Delete: ");
 
                 int Id = int.Parse(Console.ReadLine() ?? "");
-                int status = 1;
+
 
                 if (CheckId(Id, status))
                 {
@@ -572,19 +637,51 @@ namespace code.BL
 
             } while (isFirst != 1);
 
-            _DL.DeleteReaders(readers);
+            isFirst = 0;
+            do
+            {
+
+                Console.Write("Do you want to delete (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully delete ");
+                    _DL.DeleteReaders(readers);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to delete");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
+
         }
         public void Restore()
         {
             Console.Clear();
+
             Readers readers = new Readers();
+
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Restore");
+            Console.WriteLine("══════════════════════════════════════");
+
             int isFirst = 0;
+
             do
             {
+                int status = 0;
+                DisplayReaders(status);
                 Console.Write("ID Restore: ");
 
                 int Id = int.Parse(Console.ReadLine() ?? "");
-                int status = 0;
+
 
                 if (CheckId(Id, status))
                 {
@@ -606,7 +703,12 @@ namespace code.BL
         public void ChangePassword(string Mail)
         {
             Console.Clear();
+
             Readers readers = new Readers();
+
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Change Password");
+            Console.WriteLine("══════════════════════════════════════");
 
             int isFirst = 0;
 
@@ -648,7 +750,29 @@ namespace code.BL
 
             } while (isFirst != 1);
 
-            _DL.ChangePassword(readers);
+            isFirst = 0;
+            do
+            {
+
+                Console.Write("Do you want to Change Password (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully Change Password");
+                    _DL.ChangePassword(readers);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to Change Password");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
         }
         bool IsValidEmail(string email)
         {

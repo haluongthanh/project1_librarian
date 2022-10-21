@@ -26,6 +26,9 @@ namespace code.BL
                 int isFirst = 0;
 
                 int status;
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Create");
+                Console.WriteLine("══════════════════════════════════════");
 
                 do
                 {
@@ -91,7 +94,29 @@ namespace code.BL
                 status = 1;
                 book.status = status;
 
-                _repo.AddBook(book);
+                isFirst = 0;
+                do
+                {
+
+                    Console.Write("Do you want to create (Y/N): ");
+                    string l = Console.ReadLine() ?? "";
+                    if (l == "y" || l == "Y")
+                    {
+                        Console.WriteLine("You have successfully create");
+                        _repo.AddBook(book);
+                        isFirst = 1;
+                    }
+                    else if (l == "n" || l == "N")
+                    {
+                        Console.WriteLine("You do not agree to create");
+                        isFirst = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You entered wrong");
+                    }
+
+                } while (isFirst != 1);
             }
             catch (System.Exception)
             {
@@ -107,14 +132,20 @@ namespace code.BL
 
                 Book book = new Book();
 
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Update");
+                Console.WriteLine("══════════════════════════════════════");
 
                 int isFirst = 0;
 
                 do
                 {
+                    int status = 1;
+                    DisplayBook(status);
+
                     Console.Write("ISBN update: ");
                     string Isbn = Console.ReadLine() ?? "";
-                    int status = 1;
+
                     if (CheckIsbn(Isbn, status))
                     {
                         book.Isbn = Isbn;
@@ -164,7 +195,29 @@ namespace code.BL
                 int Amount = int.Parse(Console.ReadLine() ?? "");
                 book.Amount = Amount;
 
-                _repo.UpdateBook(book);
+                isFirst = 0;
+                do
+                {
+
+                    Console.Write("Do you want to Update (Y/N): ");
+                    string l = Console.ReadLine() ?? "";
+                    if (l == "y" || l == "Y")
+                    {
+                        Console.WriteLine("You have successfully update");
+                        _repo.UpdateBook(book);
+                        isFirst = 1;
+                    }
+                    else if (l == "n" || l == "N")
+                    {
+                        Console.WriteLine("You do not agree to update");
+                        isFirst = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You entered wrong");
+                    }
+
+                } while (isFirst != 1);
             }
             catch (System.Exception)
             {
@@ -179,6 +232,10 @@ namespace code.BL
                 Console.Clear();
 
                 Book book = new Book();
+
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Update");
+                Console.WriteLine("══════════════════════════════════════");
 
                 int isFirst = 0;
 
@@ -291,13 +348,22 @@ namespace code.BL
 
             Book book = new Book();
 
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Delete");
+            Console.WriteLine("══════════════════════════════════════");
+
+
             int isFirst = 0;
 
             do
             {
+                int status = 1;
+
+                DisplayBook(status);
+
                 Console.Write("ISBN Delete: ");
                 string isbn = Console.ReadLine() ?? "";
-                int status = 1;
+
                 if (CheckIsbn(isbn, status))
                 {
                     book.Isbn = isbn;
@@ -313,7 +379,30 @@ namespace code.BL
 
             } while (isFirst != 1);
 
-            _repo.DeleteBook(book);
+            isFirst = 0;
+            do
+            {
+
+                Console.Write("Do you want to delete (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully delete");
+                    _repo.DeleteBook(book);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to delete");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
+
         }
         public void Restore()
         {
@@ -321,13 +410,20 @@ namespace code.BL
 
             Book book = new Book();
 
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Restore");
+            Console.WriteLine("══════════════════════════════════════");
+
+
             int isFirst = 0;
 
             do
             {
-                Console.Write("ISBN Delete: ");
-                string isbn = Console.ReadLine() ?? "";
                 int status = 0;
+                DisplayBook(status);
+
+                Console.Write("ISBN Restore: ");
+                string isbn = Console.ReadLine() ?? "";
 
                 if (CheckIsbn(isbn, status))
                 {
@@ -344,7 +440,30 @@ namespace code.BL
 
             } while (isFirst != 1);
 
-            _repo.DeleteBook(book);
+            isFirst = 0;
+            do
+            {
+
+                Console.Write("Do you want to restore (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully restore");
+                    _repo.DeleteBook(book);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to restore");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
+
         }
         public void DisplayBook(int i)
         {
@@ -395,7 +514,7 @@ namespace code.BL
 
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM Books where ISBN='{Isbn}' and {status}";
+            var query = $"SELECT * FROM Books where ISBN='{Isbn}' and Status={status}";
 
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {

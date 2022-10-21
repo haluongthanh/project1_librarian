@@ -15,8 +15,6 @@ LoanSlipDetailsService loanSlipDetailsService = new LoanSlipDetailsService();
 
 begin();
 
-
-
 void begin()
 {
 
@@ -64,6 +62,9 @@ void login()
     int isFirst = 0;
     do
     {
+        Console.WriteLine("══════════════════════════════════════");
+        Console.WriteLine("Login");
+        Console.WriteLine("══════════════════════════════════════");
         Console.Write("Enter Mail: ");
         string Mail = Console.ReadLine() ?? "";
 
@@ -308,35 +309,36 @@ void BookMenu()
                     bookService.AddBook();
                     break;
                 case 4:
-                    selectedChoice = 0;
-                    do
-                    {
-                        Console.Clear();
-                        Console.WriteLine("1.Update all");
-                        Console.WriteLine("2.update each part");
-                        Console.Write("Your choice: ");
+                    // selectedChoice = 0;
+                    // do
+                    // {
+                    //     Console.Clear();
+                    //     Console.WriteLine("1.Update all");
+                    //     Console.WriteLine("2.update each part");
+                    //     Console.Write("Your choice: ");
 
-                        choice = Console.ReadLine();
+                    //     choice = Console.ReadLine();
 
-                        if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 3)
-                        {
+                    //     if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 3)
+                    //     {
 
-                        }
-                        else
-                        {
-                            switch (selectedChoice)
-                            {
-                                case 1:
-                                    bookService.UpdateBook();
-                                    break;
-                                case 2:
-                                    bookService.MenuUpdate();
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    } while (selectedChoice != 0);
+                    //     }
+                    //     else
+                    //     {
+                    //         switch (selectedChoice)
+                    //         {
+                    //             case 1:
+                    //                 bookService.UpdateBook();
+                    //                 break;
+                    //             case 2:
+                    //                 bookService.MenuUpdate();
+                    //                 break;
+                    //             default:
+                    //                 break;
+                    //         }
+                    //     }
+                    // } while (selectedChoice != 0);
+                    bookService.UpdateBook();
                     break;
                 case 5:
                     bookService.DeleteBook();
@@ -496,35 +498,36 @@ void EmployeeMenu()
                     employeeService.AddEmployee();
                     break;
                 case 4:
-                    selectedChoice = 0;
-                    do
-                    {
-                        Console.Clear();
-                        Console.WriteLine("1.Update all");
-                        Console.WriteLine("2.update each part");
-                        Console.Write("Your choice: ");
+                    // selectedChoice = 0;
+                    // do
+                    // {
+                    //     Console.Clear();
+                    //     Console.WriteLine("1.Update all");
+                    //     Console.WriteLine("2.update each part");
+                    //     Console.Write("Your choice: ");
 
-                        choice = Console.ReadLine();
+                    //     choice = Console.ReadLine();
 
-                        if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 3)
-                        {
+                    //     if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 3)
+                    //     {
 
-                        }
-                        else
-                        {
-                            switch (selectedChoice)
-                            {
-                                case 1:
-                                    employeeService.UpdateEmployee();
-                                    break;
-                                case 2:
-                                    employeeService.MenuUpdate();
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    } while (selectedChoice != 0);
+                    //     }
+                    //     else
+                    //     {
+                    //         switch (selectedChoice)
+                    //         {
+                    //             case 1:
+                    //                 employeeService.UpdateEmployee();
+                    //                 break;
+                    //             case 2:
+                    //                 employeeService.MenuUpdate();
+                    //                 break;
+                    //             default:
+                    //                 break;
+                    //         }
+                    //     }
+                    // } while (selectedChoice != 0);
+                    employeeService.UpdateEmployee();
                     break;
                 case 5:
                     employeeService.DeleteEmployee();
@@ -622,35 +625,37 @@ void ReadersMenu()
                     readersService.AddReaders();
                     break;
                 case 4:
-                    Console.Clear();
-                    selectedChoice = 0;
-                    do
-                    {
-                        Console.WriteLine("1.Update all");
-                        Console.WriteLine("2.update each part");
-                        Console.Write("Your choice: ");
+                    // Console.Clear();
+                    // selectedChoice = 0;
+                    // do
+                    // {
+                    //     Console.WriteLine("1.Update all");
+                    //     Console.WriteLine("2.update each part");
+                    //     Console.Write("Your choice: ");
 
-                        choice = Console.ReadLine();
+                    //     choice = Console.ReadLine();
 
-                        if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 3)
-                        {
+                    //     if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 3)
+                    //     {
 
-                        }
-                        else
-                        {
-                            switch (selectedChoice)
-                            {
-                                case 1:
-                                    readersService.UpdateReaders();
-                                    break;
-                                case 2:
-                                    readersService.MenuUpdate();
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    } while (selectedChoice != 0);
+                    //     }
+                    //     else
+                    //     {
+                    //         switch (selectedChoice)
+                    //         {
+                    //             case 1:
+                    //                 readersService.UpdateReaders();
+                    //                 break;
+                    //             case 2:
+                    //                 readersService.MenuUpdate();
+                    //                 break;
+                    //             default:
+                    //                 ReadersMenu();
+                    //                 break;
+                    //         }
+                    //     }
+                    // } while (selectedChoice != 0);
+                    readersService.UpdateReaders();
                     break;
                 case 5:
                     readersService.DeleteReaders();
@@ -715,6 +720,7 @@ void ReadersMenu()
 void loanSlipMenu(string Mail)
 {
     Console.Clear();
+    Console.WriteLine(Mail);
     int selectedChoice = 0;
     do
     {
@@ -752,35 +758,36 @@ void loanSlipMenu(string Mail)
                     loanSlipService.AddLoanSLip(Mail);
                     break;
                 case 4:
-                    selectedChoice = 0;
-                    do
-                    {
-                        Console.Clear();
-                        Console.WriteLine("1.Update all");
-                        Console.WriteLine("2.update each part");
-                        Console.Write("Your choice: ");
+                    // selectedChoice = 0;
+                    // do
+                    // {
+                    //     Console.Clear();
+                    //     Console.WriteLine("1.Update all");
+                    //     Console.WriteLine("2.update each part");
+                    //     Console.Write("Your choice: ");
 
-                        choice = Console.ReadLine();
+                    //     choice = Console.ReadLine();
 
-                        if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 3)
-                        {
+                    //     if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 3)
+                    //     {
 
-                        }
-                        else
-                        {
-                            switch (selectedChoice)
-                            {
-                                case 1:
-                                    loanSlipService.UpdateLoanSLip(Mail);
-                                    break;
-                                case 2:
-                                    loanSlipService.MenuUpdate();
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    } while (selectedChoice != 0);
+                    //     }
+                    //     else
+                    //     {
+                    //         switch (selectedChoice)
+                    //         {
+                    //             case 1:
+                    //                 loanSlipService.UpdateLoanSLip(Mail);
+                    //                 break;
+                    //             case 2:
+                    //                 loanSlipService.MenuUpdate();
+                    //                 break;
+                    //             default:
+                    //                 break;
+                    //         }
+                    //     }
+                    // } while (selectedChoice != 0);
+                    loanSlipService.UpdateLoanSLip(Mail);
                     break;
                 case 5:
                     loanSlipService.DeleteLoanSlip();

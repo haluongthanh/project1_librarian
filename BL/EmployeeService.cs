@@ -23,6 +23,11 @@ namespace code.BL
 
                 Employee employee = new Employee();
 
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Create");
+                Console.WriteLine("══════════════════════════════════════");
+
+
                 int isFirst = 0;
                 do
                 {
@@ -133,7 +138,30 @@ namespace code.BL
                 employee.Position = status;
                 employee.status = status;
 
-                _repo.AddEmployee(employee);
+                isFirst = 0;
+                do
+                {
+
+                    Console.Write("Do you want to create (Y/N): ");
+                    string l = Console.ReadLine() ?? "";
+                    if (l == "y" || l == "Y")
+                    {
+                        Console.WriteLine("You have successfully create");
+                        _repo.AddEmployee(employee);
+                        isFirst = 1;
+                    }
+                    else if (l == "n" || l == "N")
+                    {
+                        Console.WriteLine("You do not agree to create");
+                        isFirst = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You entered wrong");
+                    }
+
+                } while (isFirst != 1);
+
             }
             catch (System.Exception)
             {
@@ -146,6 +174,9 @@ namespace code.BL
             try
             {
                 Console.Clear();
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Update");
+                Console.WriteLine("══════════════════════════════════════");
 
                 Employee employee = new Employee();
 
@@ -290,7 +321,30 @@ namespace code.BL
                     }
                 } while (isFirst != 1);
 
-                _repo.UpdateEmployee(employee);
+                isFirst = 0;
+                do
+                {
+
+                    Console.Write("Do you want to Update (Y/N): ");
+                    string l = Console.ReadLine() ?? "";
+                    if (l == "y" || l == "Y")
+                    {
+                        Console.WriteLine("You have successfully update");
+                        _repo.UpdateEmployee(employee);
+                        isFirst = 1;
+                    }
+                    else if (l == "n" || l == "N")
+                    {
+                        Console.WriteLine("You do not agree to update");
+                        isFirst = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You entered wrong");
+                    }
+
+                } while (isFirst != 1);
+
             }
             catch (System.Exception)
             {
@@ -505,13 +559,20 @@ namespace code.BL
 
             Employee employee = new Employee();
 
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Delete");
+            Console.WriteLine("══════════════════════════════════════");
+
             int isFirst = 0;
 
             do
             {
+                int status = 1;
+                DisplayEmployee(status);
+
                 Console.Write("ID Delete: ");
                 int Id = int.Parse(Console.ReadLine() ?? "");
-                int status = 1;
+
                 if (CheckId(Id, status))
                 {
                     employee.Id = Id;
@@ -527,7 +588,30 @@ namespace code.BL
 
             } while (isFirst != 1);
 
-            _repo.DeleteEmployee(employee);
+            isFirst = 0;
+            do
+            {
+
+                Console.Write("Do you want to Delete (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully Delete");
+                    _repo.DeleteEmployee(employee);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to Delete");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
+
         }
         public void Restore()
         {
@@ -535,14 +619,22 @@ namespace code.BL
 
             Employee employee = new Employee();
 
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Restore");
+            Console.WriteLine("══════════════════════════════════════");
+
             int isFirst = 0;
 
             do
             {
+                int status = 0;
+
+                DisplayEmployee(status);
+
                 Console.Write("ID Restore: ");
 
                 int Id = int.Parse(Console.ReadLine() ?? "");
-                int status = 0;
+
 
                 if (CheckId(Id, status))
                 {
@@ -559,13 +651,40 @@ namespace code.BL
 
             } while (isFirst != 1);
 
-            _repo.DeleteEmployee(employee);
+            isFirst = 0;
+            do
+            {
+
+                Console.Write("Do you want to Restore (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully Restore");
+                    _repo.DeleteEmployee(employee);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to Restore");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
+
         }
         public void ChangePassword(string Mail)
         {
             Console.Clear();
 
             Employee employee = new Employee();
+
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Change Password");
+            Console.WriteLine("══════════════════════════════════════");
 
             int isFirst = 0;
 
@@ -607,7 +726,30 @@ namespace code.BL
 
             } while (isFirst != 1);
 
-            _repo.ChangePassword(employee);
+            isFirst = 0;
+            do
+            {
+
+                Console.Write("Do you want to Change Password (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully Change Password");
+                    _repo.ChangePassword(employee);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to Change Password");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
+
         }
         public void decentralization()
         {
@@ -615,13 +757,20 @@ namespace code.BL
 
             Employee employee = new Employee();
 
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Decentralization");
+            Console.WriteLine("══════════════════════════════════════");
+
             int isFirst = 0;
 
             do
             {
+                int status = 1;
+                DisplayEmployee(status);
+
                 Console.Write("ID decentralization: ");
                 int Id = int.Parse(Console.ReadLine() ?? "");
-                int status = 1;
+
                 if (CheckId(Id, status))
                 {
                     Console.WriteLine("1.Admin\n2.Staff");
@@ -653,8 +802,30 @@ namespace code.BL
 
             } while (isFirst != 1);
 
+            isFirst = 0;
+            do
+            {
 
-            _repo.decentralization(employee);
+                Console.Write("Do you want to decentralization (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully decentralization");
+                    _repo.decentralization(employee);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to decentralization");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
+
         }
         public void DisplayEmployee(int i)
         {

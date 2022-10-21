@@ -20,6 +20,11 @@ namespace code.BL
             try
             {
                 Console.Clear();
+
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Create");
+                Console.WriteLine("══════════════════════════════════════");
+
                 LoanSlip loanSlip = new LoanSlip();
 
                 string name;
@@ -106,7 +111,30 @@ namespace code.BL
                 status = 1;
                 loanSlip.status = status;
 
-                _DL.AddLoanSlip(loanSlip);
+                isFirst = 0;
+                do
+                {
+
+                    Console.Write("Do you want to create (Y/N): ");
+                    string l = Console.ReadLine() ?? "";
+                    if (l == "y" || l == "Y")
+                    {
+                        Console.WriteLine("You have successfully create");
+                        _DL.AddLoanSlip(loanSlip);
+                        isFirst = 1;
+                    }
+                    else if (l == "n" || l == "N")
+                    {
+                        Console.WriteLine("You do not agree to create");
+                        isFirst = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You entered wrong");
+                    }
+
+                } while (isFirst != 1);
+
 
             }
             catch (System.Exception)
@@ -120,7 +148,12 @@ namespace code.BL
             try
             {
                 Console.Clear();
+
                 LoanSlip loanSlip = new LoanSlip();
+
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Upadte");
+                Console.WriteLine("══════════════════════════════════════");
 
                 string name;
 
@@ -222,8 +255,30 @@ namespace code.BL
 
                 } while (isFirst != 1);
 
+                isFirst = 0;
+                do
+                {
 
-                _DL.UpdateLoanSlip(loanSlip);
+                    Console.Write("Do you want to update (Y/N): ");
+                    string l = Console.ReadLine() ?? "";
+                    if (l == "y" || l == "Y")
+                    {
+                        Console.WriteLine("You have successfully update");
+                        _DL.UpdateLoanSlip(loanSlip);
+                        isFirst = 1;
+                    }
+                    else if (l == "n" || l == "N")
+                    {
+                        Console.WriteLine("You do not agree to update");
+                        isFirst = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You entered wrong");
+                    }
+
+                } while (isFirst != 1);
+
 
             }
             catch (System.Exception)
@@ -237,7 +292,12 @@ namespace code.BL
             try
             {
                 Console.Clear();
+
                 LoanSlip loanSlip = new LoanSlip();
+
+                Console.WriteLine("══════════════════════════════════════");
+                Console.WriteLine("Update status");
+                Console.WriteLine("══════════════════════════════════════");
 
                 string name;
 
@@ -245,11 +305,14 @@ namespace code.BL
 
                 do
                 {
+                    int status = 1;
+                    DisplayLoanSlip(status);
+
                     Console.Write("Id : ");
 
                     name = "Loan_slip";
                     int Id = int.Parse(Console.ReadLine() ?? "");
-                    int status = 1;
+
 
                     if (CheckId(name, Id, status))
                     {
@@ -273,7 +336,30 @@ namespace code.BL
 
                 } while (isFirst != 1);
 
-                _DL.DeleteLoanSlip(loanSlip);
+                isFirst = 0;
+                do
+                {
+
+                    Console.Write("Do you want to update status (Y/N): ");
+                    string l = Console.ReadLine() ?? "";
+                    if (l == "y" || l == "Y")
+                    {
+                        Console.WriteLine("You have successfully update tatus ");
+                        _DL.DeleteLoanSlip(loanSlip);
+                        isFirst = 1;
+                    }
+                    else if (l == "n" || l == "N")
+                    {
+                        Console.WriteLine("You do not agree to update status");
+                        isFirst = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You entered wrong");
+                    }
+
+                } while (isFirst != 1);
+
 
             }
             catch (System.Exception)
@@ -434,18 +520,26 @@ namespace code.BL
         public void DeleteLoanSlip()
         {
             Console.Clear();
+
             LoanSlip loanSlip = new LoanSlip();
+
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Delete");
+            Console.WriteLine("══════════════════════════════════════");
+
             string name;
 
             int isFirst = 0;
 
             do
             {
-                Console.Write("Id Delte: ");
+                int status = 1;
+                DisplayLoanSlip(status);
+                Console.Write("Id Delete: ");
 
                 name = "Loan_slip";
                 int Id = int.Parse(Console.ReadLine() ?? "");
-                int status = 1;
+
 
                 if (CheckId(name, Id, status))
                 {
@@ -458,23 +552,54 @@ namespace code.BL
 
             } while (isFirst != 1);
 
-            _DL.DeleteLoanSlip(loanSlip);
+            isFirst = 0;
+            do
+            {
+
+                Console.Write("Do you want to delete (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully delete ");
+                    _DL.DeleteLoanSlip(loanSlip);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to delete");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
         }
         public void Restore()
         {
             Console.Clear();
+
             LoanSlip loanSlip = new LoanSlip();
+
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Restore");
+            Console.WriteLine("══════════════════════════════════════");
+
             string name;
 
             int isFirst = 0;
 
             do
             {
+                int status = 0;
+                DisplayLoanSlip(status);
+
                 Console.Write("Id Restore: ");
                 name = "Loan_slip";
 
                 int Id = int.Parse(Console.ReadLine() ?? "");
-                int status = 0;
+
 
                 if (CheckId(name, Id, status))
                 {
@@ -487,7 +612,29 @@ namespace code.BL
 
             } while (isFirst != 1);
 
-            _DL.DeleteLoanSlip(loanSlip);
+            isFirst = 0;
+            do
+            {
+
+                Console.Write("Do you want to restore (Y/N): ");
+                string l = Console.ReadLine() ?? "";
+                if (l == "y" || l == "Y")
+                {
+                    Console.WriteLine("You have successfully restore ");
+                    _DL.DeleteLoanSlip(loanSlip);
+                    isFirst = 1;
+                }
+                else if (l == "n" || l == "N")
+                {
+                    Console.WriteLine("You do not agree to restore");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("You entered wrong");
+                }
+
+            } while (isFirst != 1);
         }
         public void DisplayLoanSlip(int i)
         {
@@ -527,7 +674,7 @@ namespace code.BL
             {
                 while (reader.Read())
                 {
-                    string row = $"| {reader["Id"],5} | {reader["Id_Readers"],5} | {reader["Id_Employee"],5} | {reader["Id_loan_slip_details"]} | {reader["Borrowed_date"],15} | {reader["Pay_day"],15} | {reader["Status"],10}|";
+                    string row = $"| {reader["Id"],5} | {reader["Id_Readers"],10} | {reader["Id_Employee"],5} | {reader["Id_loan_slip_details"]} | {reader["Borrowed_date"],15} | {reader["Pay_day"],15} | {reader["Status"],10}|";
 
                     System.Console.WriteLine(row);
                 }
@@ -562,7 +709,7 @@ namespace code.BL
 
             int choice = 0;
 
-            var query = $"SELECT * FROM Employee where Email='{Email}' and Status=1";
+            var query = $"SELECT * FROM Employee where Email='{Email}'";
 
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
