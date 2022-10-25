@@ -16,7 +16,7 @@ namespace code.DL
 
             cmd.Parameters.AddWithValue("@Isbn", book.Isbn);
 
-            cmd.Parameters.AddWithValue("@Book_names", book.Book_names);
+            cmd.Parameters.AddWithValue("@Titles", book.Book_names);
 
             cmd.Parameters.AddWithValue("@Authors", book.Author);
 
@@ -46,7 +46,7 @@ namespace code.DL
 
             cmd.Parameters.AddWithValue("@Isbn", book.Isbn);
 
-            cmd.Parameters.AddWithValue("@Book_names", book.Book_names);
+            cmd.Parameters.AddWithValue("@Titles", book.Book_names);
 
             cmd.Parameters.AddWithValue("@Authors", book.Author);
 

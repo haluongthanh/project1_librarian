@@ -10,7 +10,7 @@ public class DBHelper
         {
             _connection = new MySqlConnection
             {
-                ConnectionString = "server=localhost;userid=root;password=Thanh36@;port=3306;database=libranrian;"
+                ConnectionString = "server=localhost;userid=root;password=Thanh36@;port=3306;database=librarian;"
             };
         }
         return _connection;

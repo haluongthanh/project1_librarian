@@ -31,19 +31,25 @@ namespace code.BL
                 string isbn;
 
                 isFirst = 0;
+
+                int status = 1;
+
+                DisplayBook(status);
+
                 do
                 {
-                    Console.Write("Id ISBN: ");
-
+                    Console.Write("ISBN: ");
                     isbn = Console.ReadLine() ?? "";
+                    string name = "ISBN";
                     if (CheckISBN(isbn))
                     {
+                        Sreach(name, isbn);
                         loanSlipDetails.id_Isbn = isbn;
                         isFirst = 1;
                     }
                     else
                     {
-                        Console.WriteLine("id does not exist");
+                        Console.WriteLine("ISBN does not exist");
                     }
 
                 } while (isFirst != 1);
@@ -51,7 +57,7 @@ namespace code.BL
                 isFirst = 0;
                 do
                 {
-                    Console.Write("amount: ");
+                    Console.Write("Amount: ");
 
                     int amount = int.Parse(Console.ReadLine() ?? "");
                     if (CheckAmount(amount, isbn))
@@ -61,12 +67,12 @@ namespace code.BL
                     }
                     else
                     {
-                        Console.WriteLine("amount is not enough");
+                        Console.WriteLine("Amount is not enough");
                     }
 
                 } while (isFirst != 1);
 
-                int status = 1;
+
                 loanSlipDetails.status = status;
 
                 isFirst = 0;
@@ -107,22 +113,26 @@ namespace code.BL
             {
                 LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
 
-                Console.WriteLine("══════════════════════════════════════");
-                Console.WriteLine("Update");
-                Console.WriteLine("══════════════════════════════════════");
-
                 int isFirst = 0;
 
+                int status = 1;
+
+                int status2 = 2;
+
+                string isbn;
+
+                DisplayLoanSlipDetails(status, status2);
 
                 do
                 {
-                    Console.Write("Id: ");
+                    Console.Write("Update Id: ");
 
                     int id = int.Parse(Console.ReadLine() ?? "");
-                    int status = 1;
 
-                    if (CheckId(id, status))
+                    if (CheckId(id, status, status2))
                     {
+                        string check = Convert.ToString(id);
+                        SearchLoanSlipDetails(check);
                         loanSlipDetails.id = id;
                         isFirst = 1;
                     }
@@ -133,20 +143,24 @@ namespace code.BL
 
                 } while (isFirst != 1);
 
-                string isbn;
+                isFirst = 0;
+
+                DisplayBook(status);
+
                 do
                 {
-                    Console.Write("Id ISBN: ");
-
+                    Console.Write("Update ISBN: ");
                     isbn = Console.ReadLine() ?? "";
+                    string name = "Id";
                     if (CheckISBN(isbn))
                     {
+                        Sreach(name, isbn);
                         loanSlipDetails.id_Isbn = isbn;
                         isFirst = 1;
                     }
                     else
                     {
-                        Console.WriteLine("id does not exist");
+                        Console.WriteLine("ISBN does not exist");
                     }
 
                 } while (isFirst != 1);
@@ -154,7 +168,7 @@ namespace code.BL
                 isFirst = 0;
                 do
                 {
-                    Console.Write("amount: ");
+                    Console.Write("Update Amount: ");
 
                     int amount = int.Parse(Console.ReadLine() ?? "");
                     if (CheckAmount(amount, isbn))
@@ -206,24 +220,24 @@ namespace code.BL
 
             LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
 
-            Console.WriteLine("══════════════════════════════════════");
-            Console.WriteLine("Delete");
-            Console.WriteLine("══════════════════════════════════════");
-
             int isFirst = 0;
+
+            int status = 1;
+
+            int status2 = 2;
+
+            DisplayLoanSlipDetails(status, status2);
 
             do
             {
-                int status = 1;
-                DisplayLoanSlipDetails(status);
 
                 Console.Write("Id Delete: ");
-
                 int Id = int.Parse(Console.ReadLine() ?? "");
 
-
-                if (CheckId(Id, status))
+                if (CheckId(Id, status, status2))
                 {
+                    string check = Convert.ToString(Id);
+                    SearchLoanSlipDetails(check);
                     loanSlipDetails.id = Id;
                     isFirst = 1;
 
@@ -240,7 +254,6 @@ namespace code.BL
             isFirst = 0;
             do
             {
-
                 Console.Write("Do you want to delete (Y/N): ");
                 string l = Console.ReadLine() ?? "";
                 if (l == "y" || l == "Y")
@@ -262,96 +275,31 @@ namespace code.BL
             } while (isFirst != 1);
 
         }
-        public void status()
-        {
-            Console.Clear();
 
-            LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
-
-            Console.WriteLine("══════════════════════════════════════");
-            Console.WriteLine("Update Status");
-            Console.WriteLine("══════════════════════════════════════");
-
-            int isFirst = 0;
-
-            do
-            {
-                int status = 1;
-                DisplayLoanSlipDetails(status);
-
-                Console.Write("Id : ");
-
-                int Id = int.Parse(Console.ReadLine() ?? "");
-
-
-                if (CheckId(Id, status))
-                {
-                    if (CheckAmountDetails(Id, status))
-                    {
-                        loanSlipDetails.id = Id;
-                        isFirst = 1;
-
-                        status = 2;
-                        loanSlipDetails.status = status;
-                    }
-
-                }
-                else
-                {
-                    Console.WriteLine("id does not exist");
-                }
-
-            } while (isFirst != 1);
-
-            isFirst = 0;
-            do
-            {
-
-                Console.Write("Do you want to update status (Y/N): ");
-                string l = Console.ReadLine() ?? "";
-                if (l == "y" || l == "Y")
-                {
-                    Console.WriteLine("You have successfully update status");
-                    _DL.DeleteLoanSlipDetalis(loanSlipDetails);
-                    isFirst = 1;
-                }
-                else if (l == "n" || l == "N")
-                {
-                    Console.WriteLine("You do not agree to update status");
-                    isFirst = 1;
-                }
-                else
-                {
-                    Console.WriteLine("You entered wrong");
-                }
-
-            } while (isFirst != 1);
-
-        }
         public void Restore()
         {
             Console.Clear();
 
             LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
 
-            Console.WriteLine("══════════════════════════════════════");
-            Console.WriteLine("Restore");
-            Console.WriteLine("══════════════════════════════════════");
-
             int isFirst = 0;
+
+            int status = 0;
+
+            int status2 = 0;
+
+            DisplayLoanSlipDetails(status, status2);
 
             do
             {
-                int status = 0;
-                DisplayLoanSlipDetails(status);
 
                 Console.Write("Id Restore: ");
-
                 int Id = int.Parse(Console.ReadLine() ?? "");
 
-
-                if (CheckId(Id, status))
+                if (CheckId(Id, status, status2))
                 {
+                    string check = Convert.ToString(Id);
+                    SearchLoanSlipDetails(check);
                     loanSlipDetails.id = Id;
                     isFirst = 1;
 
@@ -385,16 +333,61 @@ namespace code.BL
 
             } while (isFirst != 1);
         }
-        public void DisplayLoanSlipDetails(int i)
+        public void DisplayBook(int i)
         {
             Console.Clear();
-            Console.WriteLine("==========================================================================");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
             Console.WriteLine("Library Management System ");
-            Console.WriteLine("==========================================================================");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+            DBHelper.OpenConnection();
+
+            var query = $"SELECT * FROM books Where Status={i} ";
+
+            Console.WriteLine(string.Format("| {0,10} | {1,13} | {2,10} | {3,20} | {4,25} | {5,10} | {6,10} |", "ID", "Book name", "Author", "Publisher name", "Publishing year", "Amount", "Status"));
+            using (MySqlDataReader reader = DBHelper.ExecQuery(query))
+            {
+                while (reader.Read())
+                {
+                    string row = $"| {reader["ISBN"],10} | {reader["Title"],13} | {reader["Author"],10} | {reader["Publisher_name"],20} | {reader["Publishing_year"],25} | {reader["Amount"],10} | {reader["Status"],10} |";
+
+                    System.Console.WriteLine(row);
+                }
+            }
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+        }
+        public void Sreach(string Search, string name)
+        {
+            Console.Clear();
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+            Console.WriteLine("Library Management System ");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
 
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM Loan_slip_details Where Status={i}";
+            var query = $"SELECT * FROM books Where {Search}='{name}'";
+
+            Console.WriteLine(string.Format("| {0,10} | {1,13} | {2,10} | {3,20} | {4,25} | {5,10} | {6,10} |", "ID", "Title", "Author", "Publisher name", "Publishing year", "Amount", "Status"));
+            using (MySqlDataReader reader = DBHelper.ExecQuery(query))
+            {
+                while (reader.Read())
+                {
+                    string row = $"| {reader["ISBN"],10} | {reader["Title"],13} | {reader["Author"],10} | {reader["Publisher_name"],20} | {reader["Publishing_year"],25} | {reader["Amount"],10} | {reader["Status"],10} |";
+
+                    System.Console.WriteLine(row);
+                }
+            }
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+        }
+        public void DisplayLoanSlipDetails(int i, int status)
+        {
+            Console.Clear();
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+            Console.WriteLine("Library Management System ");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+
+            DBHelper.OpenConnection();
+
+            var query = $"SELECT * FROM Loan_slip_details Where Status={i} or Status='{status}'";
 
             Console.WriteLine(string.Format("| {0,5} | {1,13} | {2,10} | {3,12} |", "ID", "ID ISBN ", "Amount", "Status"));
 
@@ -402,22 +395,23 @@ namespace code.BL
             {
                 while (reader.Read())
                 {
-                    string row = $"| {reader["Id"],5} | {reader["Id_ISBN"],13} | {reader["Amount"],10} | {reader["Status"],12} |";
+                    string row = $"| {reader["Id"],5} | {reader["Isbn"],13} | {reader["Amount"],10} | {reader["Status"],12} |";
 
                     System.Console.WriteLine(row);
                 }
             }
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
         }
         public void SearchLoanSlipDetails(string name)
         {
             Console.Clear();
-            Console.WriteLine("==========================================================================");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
             Console.WriteLine("Library Management System ");
-            Console.WriteLine("==========================================================================");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
 
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM Loan_slip_details Where Id={name}";
+            var query = $"SELECT * FROM Loan_slip_details Where Id={name} Status=1 or Status=2";
 
             Console.WriteLine(string.Format("| {0,5} | {1,13} | {2,10} | {3,12} |", "ID", "ID ISBN ", "Amount", "Status"));
 
@@ -425,18 +419,85 @@ namespace code.BL
             {
                 while (reader.Read())
                 {
-                    string row = $"| {reader["Id"],5} | {reader["Id_ISBN"],13} | {reader["Amount"],10} | {reader["Status"],12} |";
+                    string row = $"| {reader["Id"],5} | {reader["Isbn"],13} | {reader["Amount"],10} | {reader["Status"],12} |";
 
                     System.Console.WriteLine(row);
                 }
             }
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
         }
+        // public void status()
+        // {
+        //     Console.Clear();
+
+        //     LoanSlipDetails loanSlipDetails = new LoanSlipDetails();
+
+        //     int isFirst = 0;
+
+        //     int status = 1;
+
+        //     int status2 = 2;
+
+        //     DisplayLoanSlipDetails(status, status2);
+
+        //     do
+        //     {
+
+        //         Console.Write("Id : ");
+        //         int Id = int.Parse(Console.ReadLine() ?? "");
+
+        //         if (CheckId(Id, status, status2))
+        //         {
+        //             string check = Convert.ToString(Id);
+        //             SearchLoanSlipDetails(check);
+
+        //             if (CheckAmountDetails(Id, status))
+        //             {
+        //                 loanSlipDetails.id = Id;
+        //                 isFirst = 1;
+
+        //                 status = 2;
+        //                 loanSlipDetails.status = status;
+        //             }
+
+        //         }
+        //         else
+        //         {
+        //             Console.WriteLine("id does not exist");
+        //         }
+
+        //     } while (isFirst != 1);
+
+        //     isFirst = 0;
+        //     do
+        //     {
+        //         Console.Write("Do you want to update status (Y/N): ");
+        //         string l = Console.ReadLine() ?? "";
+        //         if (l == "y" || l == "Y")
+        //         {
+        //             Console.WriteLine("You have successfully update status");
+        //             _DL.DeleteLoanSlipDetalis(loanSlipDetails);
+        //             isFirst = 1;
+        //         }
+        //         else if (l == "n" || l == "N")
+        //         {
+        //             Console.WriteLine("You do not agree to update status");
+        //             isFirst = 1;
+        //         }
+        //         else
+        //         {
+        //             Console.WriteLine("You entered wrong");
+        //         }
+
+        //     } while (isFirst != 1);
+
+        // }
         bool CheckISBN(string isbn)
         {
 
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM books where ISBN='{isbn}' and Status=1";
+            var query = $"SELECT * FROM books where ISBN='{isbn}' and Status= 1";
 
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
@@ -481,63 +542,63 @@ namespace code.BL
             }
 
         }
-        bool CheckAmountDetails(int id, int status)
-        {
+        // bool CheckAmountDetails(int id, int status)
+        // {
 
-            DBHelper.OpenConnection();
+        //     DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM loan_slip_details where Id='{id}' and Status='{status}'";
+        //     var query = $"SELECT * FROM loan_slip_details where Id='{id}' and Status='{status}'";
 
-            using (MySqlDataReader reader = DBHelper.ExecQuery(query))
-            {
-                while (reader.Read())
-                {
-                    string row = $"{reader["Amount"]}";
+        //     using (MySqlDataReader reader = DBHelper.ExecQuery(query))
+        //     {
+        //         while (reader.Read())
+        //         {
+        //             string row = $"{reader["Amount"]}";
 
-                    string row1 = $"{reader["Id_ISBN"]}";
+        //             string row1 = $"{reader["Isbn"]}";
 
-                    int amount = int.Parse(row);
+        //             int amount = int.Parse(row);
 
-                    if (row != null)
-                    {
-                        DBHelper.CloseConnection();
+        //             if (row != null)
+        //             {
+        //                 DBHelper.CloseConnection();
 
-                        CheckAmount1(amount, row1);
-                        return true;
-                    }
-                }
-                return false;
-            }
-        }
-        bool CheckAmount1(int amount, string isbn)
-        {
+        //                 CheckAmount1(amount, row1);
+        //                 return true;
+        //             }
+        //         }
+        //         return false;
+        //     }
+        // }
+        // bool CheckAmount1(int amount, string isbn)
+        // {
 
-            DBHelper.OpenConnection();
+        //     DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM books where ISBN='{isbn}'";
+        //     var query = $"SELECT * FROM books where ISBN='{isbn}'";
 
-            using (MySqlDataReader reader = DBHelper.ExecQuery(query))
-            {
-                while (reader.Read())
-                {
-                    string row = $"{reader["Amount"]}";
+        //     using (MySqlDataReader reader = DBHelper.ExecQuery(query))
+        //     {
+        //         while (reader.Read())
+        //         {
+        //             string row = $"{reader["Amount"]}";
 
-                    int row1 = int.Parse(row);
+        //             int row1 = int.Parse(row);
 
-                    if (row1 >= amount)
-                    {
-                        amount = row1 + amount;
+        //             if (row1 >= amount)
+        //             {
+        //                 amount = row1 + amount;
 
-                        DBHelper.CloseConnection();
+        //                 DBHelper.CloseConnection();
 
-                        UpdateAmountBook(amount, isbn);
-                        return true;
-                    }
-                }
-                return false;
-            }
+        //                 UpdateAmountBook(amount, isbn);
+        //                 return true;
+        //             }
+        //         }
+        //         return false;
+        //     }
 
-        }
+        // }
         bool UpdateAmountBook(int amount, string isbn)
         {
 
@@ -560,12 +621,12 @@ namespace code.BL
             }
 
         }
-        bool CheckId(int id, int status)
+        bool CheckId(int id, int status, int status2)
         {
 
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM loan_slip_details where Id='{id}' and Status='{status}'";
+            var query = $"SELECT * FROM loan_slip_details where Id='{id}' and Status='{status}' or Status='{status2}'";
 
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
