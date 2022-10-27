@@ -146,7 +146,7 @@ namespace code.BL
                     }
                     else
                     {
-                        Console.WriteLine("Password wrong format");
+                        Console.WriteLine("\nPassword wrong format");
                     }
                 } while (isFirst != 1);
 
@@ -161,7 +161,7 @@ namespace code.BL
                 do
                 {
 
-                    Console.Write("Do you want to create (Y/N): ");
+                    Console.Write("\nDo you want to create (Y/N): ");
                     string l = Console.ReadLine() ?? "";
                     if (l == "y" || l == "Y")
                     {
@@ -201,191 +201,202 @@ namespace code.BL
                 int id;
 
                 int status = 1;
-
-                DisplayEmployee(status);
-
                 do
                 {
-                    Console.Write("ID Update: ");
-                    id = int.Parse(Console.ReadLine() ?? "");
-                    string name = "Id";
-
-                    if (CheckId(id, status))
+                    if (checkDisplay(status))
                     {
-                        string i = Convert.ToString(id);
-                        Sreach(name, i);
-                        employee.Id = id;
+                        DisplayEmployee(status);
+
+                        do
+                        {
+                            Console.Write("ID Update: ");
+                            id = int.Parse(Console.ReadLine() ?? "");
+                            string name = "Id";
+
+                            if (CheckId(id, status))
+                            {
+                                string i = Convert.ToString(id);
+                                Sreach(name, i);
+                                employee.Id = id;
+                                isFirst = 1;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Id khong ton tai");
+                            }
+
+                        } while (isFirst != 1);
+
+                        isFirst = 0;
+                        do
+                        {
+                            Console.Write("Update Name: ");
+                            string name = Console.ReadLine() ?? "";
+                            if (IsNameNbr(name))
+                            {
+                                employee.Name = name;
+                                isFirst = 1;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Name wrong format");
+                            }
+                        } while (isFirst != 1);
+
+                        isFirst = 0;
+                        do
+                        {
+                            Console.Write("Update Address: ");
+                            string Address = Console.ReadLine() ?? "";
+                            employee.Address = Address;
+                            isFirst = 1;
+                        } while (isFirst != 1);
+
+                        isFirst = 0;
+                        do
+                        {
+                            string name = "Employees";
+                            string names = "Readers";
+
+                            Console.Write("Update Phone: ");
+                            string Phone = Console.ReadLine() ?? "";
+                            if (IsPhoneNbr(Phone))
+                            {
+                                if (checkPhoneUpdate(id, Phone, name))
+                                {
+                                    employee.Phone = Phone;
+                                    isFirst = 1;
+                                }
+                                else if (checkPhoneUpdate(id, Phone, names))
+                                {
+                                    employee.Phone = Phone;
+                                    isFirst = 1;
+                                }
+                                else if (checkPhone(Phone, name))
+                                {
+                                    Console.WriteLine("phone already exist");
+                                }
+                                else if (checkPhone(Phone, name))
+                                {
+                                    Console.WriteLine("phone already exist");
+                                }
+                                else
+                                {
+                                    employee.Phone = Phone;
+                                    isFirst = 1;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("phone wrong format");
+                            }
+                        } while (isFirst != 1);
+
+                        isFirst = 0;
+                        do
+                        {
+                            string name = "Employees";
+                            string names = "Readers";
+
+                            Console.Write("Update Email: ");
+                            string Email = Console.ReadLine() ?? "";
+                            if (IsValidEmail(Email))
+                            {
+                                if (checkEmailUpdate(id, Email, name))
+                                {
+                                    employee.Email = Email;
+                                    isFirst = 1;
+                                }
+                                else if (checkEmailUpdate(id, Email, names))
+                                {
+                                    employee.Email = Email;
+                                    isFirst = 1;
+                                }
+                                else if (checkEmail(Email, name))
+                                {
+                                    Console.Write("Email already exist");
+                                }
+                                else if (checkEmail(Email, name))
+                                {
+                                    Console.Write("Email already exist");
+                                }
+                                else
+                                {
+                                    employee.Email = Email;
+                                    isFirst = 1;
+                                }
+                            }
+                            else
+                            {
+                                Console.Write("email wrong format");
+                            }
+                        } while (isFirst != 1);
+
+                        isFirst = 0;
+                        do
+                        {
+                            Console.Write("Update Password: ");
+                            var pass = string.Empty;
+                            ConsoleKey key;
+                            do
+                            {
+                                var keyInfo = Console.ReadKey(intercept: true);
+                                key = keyInfo.Key;
+
+                                if (key == ConsoleKey.Backspace && pass.Length > 0)
+                                {
+                                    Console.Write("\b \b");
+                                    pass = pass[0..^1];
+                                }
+                                else if (!char.IsControl(keyInfo.KeyChar))
+                                {
+                                    Console.Write("*");
+                                    pass += keyInfo.KeyChar;
+                                }
+                            } while (key != ConsoleKey.Enter);
+
+                            string Password = pass;
+                            if (IsPassWordNbr(Password))
+                            {
+                                employee.Password = Password;
+                                isFirst = 1;
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nPassword wrong format");
+                            }
+                        } while (isFirst != 1);
+
+                        isFirst = 0;
+                        do
+                        {
+
+                            Console.Write("\nDo you want to Update (Y/N): ");
+                            string l = Console.ReadLine() ?? "";
+                            if (l == "y" || l == "Y")
+                            {
+                                Console.WriteLine("You have successfully update");
+                                _repo.UpdateEmployee(employee);
+                                isFirst = 1;
+                            }
+                            else if (l == "n" || l == "N")
+                            {
+                                Console.WriteLine("You do not agree to update");
+                                isFirst = 1;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You entered wrong");
+                            }
+
+                        } while (isFirst != 1);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("not exist database");
                         isFirst = 1;
                     }
-                    else
-                    {
-                        Console.WriteLine("Id khong ton tai");
-                    }
-
-                } while (isFirst != 1);
-
-                isFirst = 0;
-                do
-                {
-                    Console.Write("Update Name: ");
-                    string name = Console.ReadLine() ?? "";
-                    if (IsNameNbr(name))
-                    {
-                        employee.Name = name;
-                        isFirst = 1;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Name wrong format");
-                    }
-                } while (isFirst != 1);
-
-                isFirst = 0;
-                do
-                {
-                    Console.Write("Update Address: ");
-                    string Address = Console.ReadLine() ?? "";
-                    employee.Address = Address;
-                    isFirst = 1;
-                } while (isFirst != 1);
-
-                isFirst = 0;
-                do
-                {
-                    string name = "Employees";
-                    string names = "Readers";
-
-                    Console.Write("Update Phone: ");
-                    string Phone = Console.ReadLine() ?? "";
-                    if (IsPhoneNbr(Phone))
-                    {
-                        if (checkPhoneUpdate(id, Phone, name))
-                        {
-                            employee.Phone = Phone;
-                            isFirst = 1;
-                        }
-                        else if (checkPhoneUpdate(id, Phone, names))
-                        {
-                            employee.Phone = Phone;
-                            isFirst = 1;
-                        }
-                        else if (checkPhone(Phone, name))
-                        {
-                            Console.WriteLine("phone da ton tai");
-                        }
-                        else if (checkPhone(Phone, name))
-                        {
-                            Console.WriteLine("phone da ton tai");
-                        }
-                        else
-                        {
-                            employee.Phone = Phone;
-                            isFirst = 1;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("phone sai dinh dang");
-                    }
-                } while (isFirst != 1);
-
-                isFirst = 0;
-                do
-                {
-                    string name = "Employees";
-                    string names = "Readers";
-
-                    Console.Write("Update Email: ");
-                    string Email = Console.ReadLine() ?? "";
-                    if (IsValidEmail(Email))
-                    {
-                        if (checkEmailUpdate(id, Email, name))
-                        {
-                            employee.Email = Email;
-                            isFirst = 1;
-                        }
-                        else if (checkEmailUpdate(id, Email, names))
-                        {
-                            employee.Email = Email;
-                            isFirst = 1;
-                        }
-                        else if (checkEmail(Email, name))
-                        {
-                            Console.Write("Email đã tồn tại");
-                        }
-                        else if (checkEmail(Email, name))
-                        {
-                            Console.Write("Email đã tồn tại");
-                        }
-                        else
-                        {
-                            employee.Email = Email;
-                            isFirst = 1;
-                        }
-                    }
-                    else
-                    {
-                        Console.Write("email sai dinh dang");
-                    }
-                } while (isFirst != 1);
-
-                isFirst = 0;
-                do
-                {
-                    Console.Write("Update Password: ");
-                    var pass = string.Empty;
-                    ConsoleKey key;
-                    do
-                    {
-                        var keyInfo = Console.ReadKey(intercept: true);
-                        key = keyInfo.Key;
-
-                        if (key == ConsoleKey.Backspace && pass.Length > 0)
-                        {
-                            Console.Write("\b \b");
-                            pass = pass[0..^1];
-                        }
-                        else if (!char.IsControl(keyInfo.KeyChar))
-                        {
-                            Console.Write("*");
-                            pass += keyInfo.KeyChar;
-                        }
-                    } while (key != ConsoleKey.Enter);
-
-                    string Password = pass;
-                    if (IsPassWordNbr(Password))
-                    {
-                        employee.Password = Password;
-                        isFirst = 1;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Password wrong format");
-                    }
-                } while (isFirst != 1);
-
-                isFirst = 0;
-                do
-                {
-
-                    Console.Write("Do you want to Update (Y/N): ");
-                    string l = Console.ReadLine() ?? "";
-                    if (l == "y" || l == "Y")
-                    {
-                        Console.WriteLine("You have successfully update");
-                        _repo.UpdateEmployee(employee);
-                        isFirst = 1;
-                    }
-                    else if (l == "n" || l == "N")
-                    {
-                        Console.WriteLine("You do not agree to update");
-                        isFirst = 1;
-                    }
-                    else
-                    {
-                        Console.WriteLine("You entered wrong");
-                    }
-
                 } while (isFirst != 1);
 
             }
@@ -405,55 +416,66 @@ namespace code.BL
             int isFirst = 0;
 
             int status = 1;
-
-            DisplayEmployee(status);
-
             do
             {
-
-                Console.Write("ID Delete: ");
-                int Id = int.Parse(Console.ReadLine() ?? "");
-                string name = "Id";
-                if (CheckId(Id, status))
+                if (checkDisplay(status))
                 {
-                    string i = Convert.ToString(Id);
-                    Sreach(name, i);
-                    employee.Id = Id;
-                    isFirst = 1;
+                    DisplayEmployee(status);
 
-                    status = 0;
-                    employee.status = status;
+                    do
+                    {
+
+                        Console.Write("ID Delete: ");
+                        int Id = int.Parse(Console.ReadLine() ?? "");
+                        string name = "Id";
+                        if (CheckId(Id, status))
+                        {
+                            string i = Convert.ToString(Id);
+                            Sreach(name, i);
+                            employee.Id = Id;
+                            isFirst = 1;
+
+                            status = 0;
+                            employee.status = status;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Id does not exist");
+                        }
+
+                    } while (isFirst != 1);
+
+                    isFirst = 0;
+                    do
+                    {
+
+                        Console.Write("Do you want to Delete (Y/N): ");
+                        string l = Console.ReadLine() ?? "";
+                        if (l == "y" || l == "Y")
+                        {
+                            Console.WriteLine("You have successfully Delete");
+                            _repo.DeleteEmployee(employee);
+                            isFirst = 1;
+                        }
+                        else if (l == "n" || l == "N")
+                        {
+                            Console.WriteLine("You do not agree to Delete");
+                            isFirst = 1;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You entered wrong");
+                        }
+
+                    } while (isFirst != 1);
                 }
                 else
                 {
-                    Console.WriteLine("Id does not exist");
-                }
-
-            } while (isFirst != 1);
-
-            isFirst = 0;
-            do
-            {
-
-                Console.Write("Do you want to Delete (Y/N): ");
-                string l = Console.ReadLine() ?? "";
-                if (l == "y" || l == "Y")
-                {
-                    Console.WriteLine("You have successfully Delete");
-                    _repo.DeleteEmployee(employee);
+                    Console.WriteLine("not exist database");
                     isFirst = 1;
                 }
-                else if (l == "n" || l == "N")
-                {
-                    Console.WriteLine("You do not agree to Delete");
-                    isFirst = 1;
-                }
-                else
-                {
-                    Console.WriteLine("You entered wrong");
-                }
-
             } while (isFirst != 1);
+
 
         }
         public void Restore()
@@ -465,55 +487,66 @@ namespace code.BL
             int isFirst = 0;
 
             int status = 0;
-
-            DisplayEmployee(status);
-
             do
             {
-
-                Console.Write("ID Restore: ");
-                int Id = int.Parse(Console.ReadLine() ?? "");
-                string name = "Id";
-
-                if (CheckId(Id, status))
+                if (checkDisplay(status))
                 {
-                    string i = Convert.ToString(Id);
-                    Sreach(name, i);
-                    employee.Id = Id;
-                    isFirst = 1;
+                    DisplayEmployee(status);
 
-                    status = 1;
-                    employee.status = status;
+                    do
+                    {
+
+                        Console.Write("ID Restore: ");
+                        int Id = int.Parse(Console.ReadLine() ?? "");
+                        string name = "Id";
+
+                        if (CheckId(Id, status))
+                        {
+                            string i = Convert.ToString(Id);
+                            Sreach(name, i);
+                            employee.Id = Id;
+                            isFirst = 1;
+
+                            status = 1;
+                            employee.status = status;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Id does not exist");
+                        }
+
+                    } while (isFirst != 1);
+
+                    isFirst = 0;
+                    do
+                    {
+
+                        Console.Write("Do you want to Restore (Y/N): ");
+                        string l = Console.ReadLine() ?? "";
+                        if (l == "y" || l == "Y")
+                        {
+                            Console.WriteLine("You have successfully Restore");
+                            _repo.DeleteEmployee(employee);
+                            isFirst = 1;
+                        }
+                        else if (l == "n" || l == "N")
+                        {
+                            Console.WriteLine("You do not agree to Restore");
+                            isFirst = 1;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You entered wrong");
+                        }
+
+                    } while (isFirst != 1);
+
                 }
                 else
                 {
-                    Console.WriteLine("Id does not exist");
-                }
-
-            } while (isFirst != 1);
-
-            isFirst = 0;
-            do
-            {
-
-                Console.Write("Do you want to Restore (Y/N): ");
-                string l = Console.ReadLine() ?? "";
-                if (l == "y" || l == "Y")
-                {
-                    Console.WriteLine("You have successfully Restore");
-                    _repo.DeleteEmployee(employee);
+                    Console.WriteLine("not exist database");
                     isFirst = 1;
                 }
-                else if (l == "n" || l == "N")
-                {
-                    Console.WriteLine("You do not agree to Restore");
-                    isFirst = 1;
-                }
-                else
-                {
-                    Console.WriteLine("You entered wrong");
-                }
-
             } while (isFirst != 1);
 
         }
@@ -523,11 +556,16 @@ namespace code.BL
 
             Employee employee = new Employee();
 
+
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("Change Password");
+            Console.WriteLine("══════════════════════════════════════");
+
             int isFirst = 0;
 
             do
             {
-                Console.Write("Input old password: ");
+                Console.Write("\nInput old password: ");
 
                 var pass = string.Empty;
                 ConsoleKey key;
@@ -552,7 +590,7 @@ namespace code.BL
 
                 if (CheckPassword(Mail, Password))
                 {
-                    Console.Write("Input your new password: ");
+                    Console.Write("\nInput your new password: ");
 
                     pass = string.Empty;
 
@@ -577,7 +615,7 @@ namespace code.BL
 
                     if (IsPassWordNbr(Password))
                     {
-                        Console.Write("Confirm your new password: ");
+                        Console.Write("\nConfirm your new password: ");
 
                         pass = string.Empty;
 
@@ -608,13 +646,13 @@ namespace code.BL
                         }
                         else
                         {
-                            Console.WriteLine("confirm your new password is incorrect");
+                            Console.WriteLine("\nconfirm your new password is incorrect");
                         }
 
                     }
                     else
                     {
-                        Console.WriteLine("Password wrong format");
+                        Console.WriteLine("\nPassword wrong format");
                     }
                 }
 
@@ -624,7 +662,7 @@ namespace code.BL
             do
             {
 
-                Console.Write("Do you want to Change Password (Y/N): ");
+                Console.Write("\nDo you want to Change Password (Y/N): ");
                 string l = Console.ReadLine() ?? "";
                 if (l == "y" || l == "Y")
                 {
@@ -654,82 +692,93 @@ namespace code.BL
             int isFirst = 0;
 
             int status = 1;
-
-            DisplayEmployee(status);
-
             do
             {
-
-                Console.Write("ID decentralization: ");
-                int Id = int.Parse(Console.ReadLine() ?? "");
-                string name = "Id";
-
-                if (CheckId(Id, status))
+                if (checkDisplay(status))
                 {
-                    string a = Convert.ToString(Id);
-                    Sreach(name, a);
+                    DisplayEmployee(status);
 
-                    Console.WriteLine("1.Admin\n2.Staff");
-                    Console.Write("Your choice:");
-                    int choice = int.Parse(Console.ReadLine() ?? "");
-
-                    switch (choice)
+                    do
                     {
-                        case 1:
-                            employee.Id = Id;
-                            isFirst = 1;
-                            int i = 0;
-                            employee.Position = i;
-                            break;
-                        case 2:
-                            employee.Id = Id;
-                            isFirst = 1;
-                            int q = 1;
-                            employee.Position = q;
-                            break;
-                        default:
-                            break;
-                    }
 
+                        Console.Write("ID decentralization: ");
+                        int Id = int.Parse(Console.ReadLine() ?? "");
+                        string name = "Id";
+
+                        if (CheckId(Id, status))
+                        {
+                            string a = Convert.ToString(Id);
+                            Sreach(name, a);
+
+                            Console.WriteLine("1.Admin\n2.Staff");
+                            Console.Write("Your choice:");
+                            int choice = int.Parse(Console.ReadLine() ?? "");
+
+                            switch (choice)
+                            {
+                                case 1:
+                                    employee.Id = Id;
+                                    isFirst = 1;
+                                    int i = 0;
+                                    employee.Position = i;
+                                    break;
+                                case 2:
+                                    employee.Id = Id;
+                                    isFirst = 1;
+                                    int q = 1;
+                                    employee.Position = q;
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Id does not exist");
+                        }
+
+                    } while (isFirst != 1);
+
+                    isFirst = 0;
+                    do
+                    {
+
+                        Console.Write("Do you want to decentralization (Y/N): ");
+                        string l = Console.ReadLine() ?? "";
+                        if (l == "y" || l == "Y")
+                        {
+                            Console.WriteLine("You have successfully decentralization");
+                            _repo.decentralization(employee);
+                            isFirst = 1;
+                        }
+                        else if (l == "n" || l == "N")
+                        {
+                            Console.WriteLine("You do not agree to decentralization");
+                            isFirst = 1;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You entered wrong");
+                        }
+
+                    } while (isFirst != 1);
                 }
                 else
                 {
-                    Console.WriteLine("Id does not exist");
-                }
-
-            } while (isFirst != 1);
-
-            isFirst = 0;
-            do
-            {
-
-                Console.Write("Do you want to decentralization (Y/N): ");
-                string l = Console.ReadLine() ?? "";
-                if (l == "y" || l == "Y")
-                {
-                    Console.WriteLine("You have successfully decentralization");
-                    _repo.decentralization(employee);
+                    Console.WriteLine("not exist database");
                     isFirst = 1;
                 }
-                else if (l == "n" || l == "N")
-                {
-                    Console.WriteLine("You do not agree to decentralization");
-                    isFirst = 1;
-                }
-                else
-                {
-                    Console.WriteLine("You entered wrong");
-                }
-
             } while (isFirst != 1);
+
 
         }
         public void DisplayEmployee(int i)
         {
             Console.Clear();
-            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
             Console.WriteLine("Library Management System ");
-            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
             DBHelper.OpenConnection();
 
@@ -746,17 +795,41 @@ namespace code.BL
                     System.Console.WriteLine(row);
                 }
             }
-            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        }
+        public void DisplayEmployeehistory()
+        {
+            Console.Clear();
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+            Console.WriteLine("Library Management System ");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            DBHelper.OpenConnection();
+
+            var query = $"SELECT * FROM Employees_history";
+            Console.WriteLine(string.Format("| {0,15} | {0,5} | {1,13} | {2,10} | {3,12} | {4,22} | {5,12} | {6,10} |", "Data history id", "ID", "Employee name ", "Address", "Phone", "Email", "Password", "Status"));
+
+
+            using (MySqlDataReader reader = DBHelper.ExecQuery(query))
+            {
+                while (reader.Read())
+                {
+                    string row = $"| {reader["data_history_id"],15} | {reader["Id"],5} | {reader["Employee_name"],14} | {reader["Address"],10} | {reader["phone"],12} | {reader["Email"],22} | {reader["Password"],12} | {reader["Status"],10} |";
+
+                    System.Console.WriteLine(row);
+                }
+            }
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         }
         public void Sreach(string Search, string name)
         {
             Console.Clear();
-            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
             Console.WriteLine("Library Management System ");
-            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM Employees Where {Search}={name} Status=1";
+            var query = $"SELECT * FROM Employees Where {Search}='{name}'";
 
             Console.WriteLine(string.Format("| {0,5} | {1,13} | {2,10} | {3,12} | {4,22} | {5,12} | {6,10} |", "ID", "Employee name ", "Address", "Phone", "Email", "Password", "Status"));
 
@@ -770,7 +843,66 @@ namespace code.BL
                     System.Console.WriteLine(row);
                 }
             }
-            Console.WriteLine("════════════════════════════════════════════════════════════════════════════");
+            Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        }
+        public void SreachEmployee(string Search, string name)
+        {
+            int isFirst = 0;
+            do
+            {
+                if (checksearch(Search, name))
+                {
+                    Console.Clear();
+                    Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+                    Console.WriteLine("Library Management System ");
+                    Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+                    DBHelper.OpenConnection();
+
+                    var query = $"SELECT * FROM Employees Where {Search}='{name}'";
+
+                    Console.WriteLine(string.Format("| {0,5} | {1,13} | {2,10} | {3,12} | {4,22} | {5,12} | {6,10} |", "ID", "Employee name ", "Address", "Phone", "Email", "Password", "Status"));
+
+
+                    using (MySqlDataReader reader = DBHelper.ExecQuery(query))
+                    {
+                        while (reader.Read())
+                        {
+                            string row = $"| {reader["Id"],5} | {reader["Employee_name"],14} | {reader["Address"],10} | {reader["phone"],12} | {reader["Email"],22} | {reader["Password"],12} | {reader["Status"],10} |";
+
+                            System.Console.WriteLine(row);
+                        }
+                    }
+                    Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+                    isFirst = 1;
+                }
+                else
+                {
+                    Console.WriteLine("not exist employee");
+                    isFirst = 1;
+                }
+            } while (isFirst != 1);
+        }
+        bool checksearch(string Search, string name)
+        {
+            Console.Clear();
+
+            DBHelper.OpenConnection();
+
+            var query = $"SELECT * FROM Employees Where {Search}='{name}'";
+
+            using (MySqlDataReader reader = DBHelper.ExecQuery(query))
+            {
+                while (reader.Read())
+                {
+                    string row = $"| {reader["Id"],5} | {reader["Employee_name"],14} | {reader["Address"],10} | {reader["phone"],12} | {reader["Email"],22} | {reader["Password"],12} | {reader["Status"],10} |";
+
+                    if (row != null)
+                    {
+                        return true;
+                    }
+                }
+                return false; ;
+            }
         }
         bool IsNameNbr(string name)
         {
@@ -912,7 +1044,7 @@ namespace code.BL
 
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM Employees where Id='{id}' and  Status={status}";
+            var query = $"SELECT * FROM Employees where Id='{id}' and Status='{status}'";
 
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
@@ -928,6 +1060,25 @@ namespace code.BL
                 return false;
             }
         }
+        bool checkDisplay(int i)
+        {
 
+            DBHelper.OpenConnection();
+
+            var query = $"SELECT * FROM Employees Where Status={i}";
+
+            using (MySqlDataReader reader = DBHelper.ExecQuery(query))
+            {
+                while (reader.Read())
+                {
+                    string row = $"| {reader["Id"],5} | {reader["Employee_name"],14} | {reader["Address"],10} | {reader["phone"],12} | {reader["Email"],22} | {reader["Password"],12} | {reader["Status"],10} |";
+                    if (row != null)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
     }
 }

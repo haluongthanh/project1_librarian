@@ -110,7 +110,7 @@ void login()
         }
         else
         {
-            Console.WriteLine(" Invalid Mail or password");
+            Console.WriteLine("\nInvalid Mail or password");
         }
 
     } while (isFirst != 1);
@@ -121,7 +121,7 @@ void MenuAdmin(string Mail)
     int selectedChoice = 0;
     do
     {
-        string[] _menu = { "Exit", "Book Manager", "Readers Manager", "Employee Mannager", "Decentralization", "Change Password" };
+        string[] _menu = { "Exit", "Book Manager", "Readers Manager", "Employee Mannager", "Decentralization", "Change Password", "History" };
 
         string _name = "Library Management System ";
 
@@ -131,7 +131,7 @@ void MenuAdmin(string Mail)
 
         var choice = Console.ReadLine();
 
-        if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 5)
+        if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 6)
         {
 
         }
@@ -153,6 +153,9 @@ void MenuAdmin(string Mail)
                     break;
                 case 5:
                     employeeService.ChangePassword(Mail);
+                    break;
+                case 6:
+                    history();
                     break;
                 default:
                     MenuAdmin(Mail);
@@ -266,28 +269,25 @@ void MenuReaders(string Mail)
                             switch (selectedChoice)
                             {
                                 case 1:
-                                    i = 1;
-                                    bookService.DisplayBook(i);
+
                                     search = "ISBN";
                                     Console.Write("Enter the data you want to search: ");
                                     name = Console.ReadLine() ?? "";
-                                    bookService.Sreach(search, name);
+                                    bookService.Sreachbook(search, name);
                                     break;
                                 case 2:
-                                    i = 1;
-                                    bookService.DisplayBook(i);
-                                    search = "Book_name";
+
+                                    search = "Title";
                                     Console.Write("Enter the data you want to search: ");
                                     name = Console.ReadLine() ?? "";
-                                    bookService.Sreach(search, name);
+                                    bookService.Sreachbook(search, name);
                                     break;
                                 case 3:
-                                    i = 1;
-                                    bookService.DisplayBook(i);
+
                                     search = "Author";
                                     Console.Write("Enter the data you want to search: ");
                                     name = Console.ReadLine() ?? "";
-                                    bookService.Sreach(search, name);
+                                    bookService.Sreachbook(search, name);
                                     break;
                                 default:
                                     break;
@@ -367,28 +367,25 @@ void BookMenu()
                             switch (selectedChoice)
                             {
                                 case 1:
-                                    i = 1;
-                                    bookService.DisplayBook(i);
+
                                     search = "ISBN";
                                     Console.Write("Enter the data you want to search: ");
                                     name = Console.ReadLine() ?? "";
-                                    bookService.Sreach(search, name);
+                                    bookService.Sreachbook(search, name);
                                     break;
                                 case 2:
-                                    i = 1;
-                                    bookService.DisplayBook(i);
-                                    search = "Book_name";
+
+                                    search = "Title";
                                     Console.Write("Enter the data you want to search: ");
                                     name = Console.ReadLine() ?? "";
-                                    bookService.Sreach(search, name);
+                                    bookService.Sreachbook(search, name);
                                     break;
                                 case 3:
-                                    i = 1;
-                                    bookService.DisplayBook(i);
+
                                     search = "Author";
                                     Console.Write("Enter the data you want to search: ");
                                     name = Console.ReadLine() ?? "";
-                                    bookService.Sreach(search, name);
+                                    bookService.Sreachbook(search, name);
                                     break;
                                 default:
                                     BookMenu();
@@ -449,12 +446,10 @@ void loanSlipDetailsMenu()
                     loanSlipDetailsService.DeleteLoanSlipDetalis();
                     break;
                 case 5:
-                    i = 1;
-                    i2 = 2;
-                    loanSlipDetailsService.DisplayLoanSlipDetails(i, i2);
+
                     Console.WriteLine("Input the id you want to search:");
                     string name = Console.ReadLine() ?? "";
-                    loanSlipDetailsService.SearchLoanSlipDetails(name);
+                    loanSlipDetailsService.SreachDetails(name);
                     break;
                 case 6:
                     loanSlipDetailsService.Restore();
@@ -527,26 +522,24 @@ void EmployeeMenu()
                             switch (selectedChoice)
                             {
                                 case 1:
-                                    i = 1;
-                                    employeeService.DisplayEmployee(i);
+
                                     search = "Id";
 
                                     Console.Write("Enter the data you want to search: ");
 
                                     name = Console.ReadLine() ?? "";
 
-                                    employeeService.Sreach(search, name);
+                                    employeeService.SreachEmployee(search, name);
                                     break;
                                 case 2:
-                                    i = 1;
-                                    employeeService.DisplayEmployee(i);
+
                                     search = "Employee_name";
 
                                     Console.Write("Enter the data you want to search: ");
 
                                     name = Console.ReadLine() ?? "";
 
-                                    employeeService.Sreach(search, name);
+                                    employeeService.SreachEmployee(search, name);
                                     break;
                             }
                         }
@@ -627,26 +620,24 @@ void ReadersMenu()
                             switch (selectedChoice)
                             {
                                 case 1:
-                                    i = 1;
-                                    readersService.DisplayReaders(i);
+
                                     search = "Id";
 
                                     Console.Write("Enter the data you want to search: ");
 
                                     name = Console.ReadLine() ?? "";
 
-                                    readersService.SreachReaders(search, name);
+                                    readersService.Sreach(search, name);
                                     break;
                                 case 2:
-                                    i = 1;
-                                    readersService.DisplayReaders(i);
+
                                     search = "Readers_name";
 
                                     Console.Write("Enter the data you want to search: ");
 
                                     name = Console.ReadLine() ?? "";
 
-                                    readersService.SreachReaders(search, name);
+                                    readersService.Sreach(search, name);
                                     break;
                             }
                         }
@@ -672,7 +663,7 @@ void loanSlipMenu(string Mail)
     do
     {
 
-        string[] _menu = { "Exit", "Display loan Slip", "Create Loan Slip", "Update", "Delete", "Search", "Restore", "Update Status" };
+        string[] _menu = { "Exit", "Display loan Slip", "Create Loan Slip", "Update", "Delete", "Search", "Restore", };
         string _name = "Library Management System ";
         string[] _menus = { "Exit", "Search by id" };
         string _names = "Library Management System " ?? "";
@@ -708,19 +699,12 @@ void loanSlipMenu(string Mail)
                     loanSlipService.DeleteLoanSlip();
                     break;
                 case 5:
-                    i = 1;
-                    i2 = 2;
-                    loanSlipService.DisplayLoanSlip(i, i2);
                     Console.Write("Enter the data you want to search: ");
                     string name = Console.ReadLine() ?? "";
-
-                    loanSlipService.Sreach(name, i, i2);
+                    loanSlipService.Sreachloanslip(name);
                     break;
                 case 6:
                     loanSlipService.Restore();
-                    break;
-                case 7:
-                    loanSlipService.Status();
                     break;
                 default:
                     loanSlipMenu(Mail);
@@ -730,7 +714,52 @@ void loanSlipMenu(string Mail)
     } while (selectedChoice != 0);
 }
 
+void history()
+{
+    Console.Clear();
+    int selectedChoice = 0;
+    do
+    {
+        string[] _menu = { "Exit", "Display Book history", "Display Readers history", "Display Employee history", "Display loan Slip history", "Display loan slip deatils history" };
+        string _name = "Library Management System ";
 
+        ShowMenu(_menu, _name);
+
+        Console.Write("Your choice: ");
+
+        var choice = Console.ReadLine();
+
+        if (!int.TryParse(choice, out selectedChoice) || selectedChoice < 1 || selectedChoice > 6)
+        {
+
+        }
+        else
+        {
+            switch (selectedChoice)
+            {
+                case 1:
+
+                    bookService.DisplayBookhistory();
+                    break;
+                case 2:
+                    readersService.DisplayReadershistory();
+                    break;
+                case 3:
+                    employeeService.DisplayEmployeehistory();
+                    break;
+                case 4:
+                    loanSlipService.DisplayLoanSliphistory();
+                    break;
+                case 5:
+                    loanSlipDetailsService.DisplayLoanSlipDetailshistory();
+                    break;
+                default:
+                    history();
+                    break;
+            }
+        }
+    } while (selectedChoice != 0);
+}
 bool checklogin(string Mail, string password)
 {
 
