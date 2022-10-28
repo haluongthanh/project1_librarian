@@ -173,7 +173,7 @@ void MenuEmployee(string Mail)
 
     do
     {
-        string[] _menu = { "Exit", "Display Book", "loan slip manager", "loan slip details manager", "Update Status", "Change Password" };
+        string[] _menu = { "Exit", "Display Book", "loan slip manager", "loan slip details manager", "Give book back", "Change Password" };
         string _name = "Library Management System ";
 
         ShowMenu(_menu, _name);

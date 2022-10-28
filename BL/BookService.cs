@@ -619,6 +619,7 @@ namespace code.BL
             if (date != null) return Regex.IsMatch(date, motif);
             else return false;
         }
+
         bool checkDisplay(int i)
         {
 

@@ -681,7 +681,7 @@ namespace code.BL
         }
         public void DisplayLoanSlipDetails(int i, int status)
         {
-            Console.Clear();
+            // Console.Clear();
             Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
             Console.WriteLine("Library Management System ");
             Console.WriteLine("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
