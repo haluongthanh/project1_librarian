@@ -168,7 +168,7 @@ namespace code.BL
                                     {
                                         Console.Write("Update ISBN: ");
                                         isbn = Console.ReadLine() ?? "";
-                                        string name = "Id";
+                                        string name = "ISBN";
                                         if (CheckISBN(isbn))
                                         {
                                             Sreach(name, isbn);
@@ -491,7 +491,7 @@ namespace code.BL
 
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM Loan_slip_details Where Id={name}";
+            var query = $"SELECT * FROM Loan_slip_details Where Id='{name}'";
 
             Console.WriteLine(string.Format("| {0,5} | {1,15} | {2,10} | {3,12} |", "ID", "ID ISBN ", "Amount", "Status"));
 
@@ -520,7 +520,7 @@ namespace code.BL
 
                     DBHelper.OpenConnection();
 
-                    var query = $"SELECT * FROM Loan_slip_details Where Id={name} Status=1 or Status=2";
+                    var query = $"SELECT * FROM Loan_slip_details Where Id='{name}'";
 
                     Console.WriteLine(string.Format("| {0,5} | {1,15} | {2,10} | {3,12} |", "ID", "ID ISBN ", "Amount", "Status"));
 
@@ -551,7 +551,7 @@ namespace code.BL
 
             DBHelper.OpenConnection();
 
-            var query = $"SELECT * FROM Loan_slip_details Where Id={name} Status=1 or Status=2";
+            var query = $"SELECT * FROM Loan_slip_details Where Id='{name}'";
 
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
