@@ -710,7 +710,7 @@ namespace code.BL
                             string a = Convert.ToString(Id);
                             Sreach(name, a);
 
-                            Console.WriteLine("1.Admin\n2.Staff");
+                            Console.WriteLine("1.Admin\n2.Employee");
                             Console.Write("Your choice:");
                             int choice = int.Parse(Console.ReadLine() ?? "");
 
@@ -807,14 +807,14 @@ namespace code.BL
             DBHelper.OpenConnection();
 
             var query = $"SELECT * FROM Employees_history";
-            Console.WriteLine(string.Format("| {0,15} | {0,5} | {1,13} | {2,10} | {3,12} | {4,22} | {5,12} | {6,10} |", "Data history id", "ID", "Employee name ", "Address", "Phone", "Email", "Password", "Status"));
+            Console.WriteLine(string.Format("| {0,15} | {1,15} | {2,13} | {3,10} | {4,12} | {5,22} | {6,12} | {7,10} |", "Data history id", "ID", "Employee name ", "Address", "Phone", "Email", "Password", "Status"));
 
 
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
                 while (reader.Read())
                 {
-                    string row = $"| {reader["data_history_id"],15} | {reader["Id"],5} | {reader["Employee_name"],14} | {reader["Address"],10} | {reader["phone"],12} | {reader["Email"],22} | {reader["Password"],12} | {reader["Status"],10} |";
+                    string row = $"| {reader["data_history_id"],15} | {reader["Id"],15} | {reader["Employee_name"],14} | {reader["Address"],10} | {reader["phone"],12} | {reader["Email"],22} | {reader["Password"],12} | {reader["Status"],10} |";
 
                     System.Console.WriteLine(row);
                 }

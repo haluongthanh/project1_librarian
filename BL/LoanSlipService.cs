@@ -759,12 +759,12 @@ namespace code.BL
 
             var query = $"SELECT * FROM Loan_slip_history";
 
-            Console.WriteLine(string.Format("| {0,15} | {0,5} | {1,10} | {2,15} | {3,20} | {4,25} | {5,25} | {6,15} |", "Data history id", "ID", "Id Readers", "Id Employee", "Id loan slip details", "Borrowed date", "Pay day", "Status"));
+            Console.WriteLine(string.Format("| {0,15} | {1,15} | {2,10} | {3,15} | {4,20} | {5,25} | {6,25} | {7,15} |", "Data history id", "ID", "Id Readers", "Id Employee", "Id loan slip details", "Borrowed date", "Pay day", "Status"));
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
                 while (reader.Read())
                 {
-                    string row = $"| {reader["data_history_id"],15} | {reader["Id"],5} | {reader["Id_Readers"],10} | {reader["Id_Employee"],15} | {reader["Id_loan_slip_details"],20} | {reader["Borrowed_date"],25} | {reader["Pay_day"],25} | {reader["Status"],15}|";
+                    string row = $"| {reader["data_history_id"],15} | {reader["Id"],15} | {reader["Id_Readers"],10} | {reader["Id_Employee"],15} | {reader["Id_loan_slip_details"],20} | {reader["Borrowed_date"],25} | {reader["Pay_day"],25} | {reader["Status"],15}|";
 
                     System.Console.WriteLine(row);
                 }

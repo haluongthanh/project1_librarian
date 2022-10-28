@@ -469,13 +469,13 @@ namespace code.BL
 
             var query = $"SELECT * FROM Loan_slip_details_history";
 
-            Console.WriteLine(string.Format("| {0,15} | {0,5} | {1,15} | {2,10} | {3,12} |", "Data history id", "ID", "ID ISBN ", "Amount", "Status"));
+            Console.WriteLine(string.Format("| {0,15} | {1,15} | {2,15} | {3,10} | {4,12} |", "Data history id", "ID", "ID ISBN ", "Amount", "Status"));
 
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
                 while (reader.Read())
                 {
-                    string row = $"| {reader["data_history_id"],15} | {reader["Id"],5} | {reader["Isbn"],15} | {reader["Amount"],10} | {reader["Status"],12} |";
+                    string row = $"| {reader["data_history_id"],15} | {reader["Id"],15} | {reader["Isbn"],15} | {reader["Amount"],10} | {reader["Status"],12} |";
 
                     System.Console.WriteLine(row);
                 }

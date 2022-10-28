@@ -440,12 +440,12 @@ namespace code.BL
 
             var query = $"SELECT * FROM Readers_history";
 
-            Console.WriteLine(string.Format("| {0,15} | {0,5} | {1,15} | {2,13} | {3,15} | {4,27} | {5,10} | {6,10} |", "Data history id", "ID", "Readers Name", "Address", "Phone", "Email", "Password", "Status"));
+            Console.WriteLine(string.Format("| {0,15} | {1,15} | {2,15} | {3,13} | {4,15} | {5,27} | {6,10} | {7,10} |", "Data history id", "ID", "Readers Name", "Address", "Phone", "Email", "Password", "Status"));
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
                 while (reader.Read())
                 {
-                    string row = $"| {reader["data_history_id"],15} | {reader["Id"],5} | {reader["Readers_name"],15} | {reader["Address"],13} | {reader["phone"],15} | {reader["Email"],27} | {reader["Password"],10} | {reader["Status"],10} |";
+                    string row = $"| {reader["data_history_id"],15} | {reader["Id"],15} | {reader["Readers_name"],15} | {reader["Address"],13} | {reader["phone"],15} | {reader["Email"],27} | {reader["Password"],10} | {reader["Status"],10} |";
 
                     System.Console.WriteLine(row);
                 }

@@ -443,7 +443,7 @@ namespace code.BL
 
             var query = $"SELECT * FROM books_history";
 
-            Console.WriteLine(string.Format("| {0,15} | {0,15} | {1,15} | {2,15} | {3,20} | {4,25} | {5,15} | {6,10} |", "Data History Id", "ID", "Title", "Author", "Publisher name", "Publishing year", "Amount", "Status"));
+            Console.WriteLine(string.Format("| {0,15} | {1,15} | {2,15} | {3,15} | {4,20} | {5,25} | {6,15} | {7,10} |", "Data History Id", "ID", "Title", "Author", "Publisher name", "Publishing year", "Amount", "Status"));
             using (MySqlDataReader reader = DBHelper.ExecQuery(query))
             {
                 while (reader.Read())
